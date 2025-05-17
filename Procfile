@@ -1,1 +1,1 @@
-python doctolib_bot.py
+web: python doctolib_bot.py
