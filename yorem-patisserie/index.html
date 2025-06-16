@@ -1,0 +1,3683 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yörem Pâtisserie - Saveurs d'Orient & Savoir-Faire Artisanal</title>
+    <meta name="description" content="Découvrez Yörem Pâtisserie à Meaux : pâtisseries orientales authentiques, brunch turc et viennoiseries artisanales. Baklava, künefe, menemen et plus encore.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --green-deep: #0D3B26;
+            --gold: #CBA135;
+            --cream: #FAF6F0;
+            --white: #FFFFFF;
+            --black: #1A1A1A;
+            --gray: #666666;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --shadow-dark: rgba(0, 0, 0, 0.15);
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --cream: #1A1A1A;
+            --white: #2A2A2A;
+            --black: #F0F0F0;
+            --gray: #B0B0B0;
+            --green-deep: #1A5A3A;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --shadow-dark: rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--cream);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Loader */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--cream);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-logo {
+            width: 120px;
+            height: 120px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px var(--shadow);
+        }
+
+        [data-theme="dark"] .navbar {
+            background: rgba(42, 42, 42, 0.95);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        [data-theme="dark"] .navbar.scrolled {
+            background: rgba(42, 42, 42, 1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 1rem;
+            z-index: 1002;
+        }
+
+        .nav-logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--green-deep);
+            font-weight: 700;
+        }
+
+        [data-theme="dark"] .nav-logo-text {
+            color: var(--gold);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--green-deep);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        [data-theme="dark"] .nav-link {
+            color: var(--gold);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: var(--cream);
+            color: var(--green-deep);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .theme-toggle:hover {
+            background: var(--green-deep);
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            background: var(--cream);
+            padding: 0.25rem;
+            border-radius: 20px;
+        }
+
+        .lang-btn {
+            padding: 0.25rem 0.75rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--gray);
+            transition: all 0.3s ease;
+            border-radius: 15px;
+        }
+
+        .lang-btn.active {
+            background: var(--green-deep);
+            color: white;
+        }
+
+        [data-theme="dark"] .lang-btn.active {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--green-deep);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .social-link {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .social-link:hover {
+            background: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        [data-theme="dark"] .social-link:hover {
+            background: var(--green-deep);
+            color: white;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--green-deep);
+            cursor: pointer;
+            z-index: 1002;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .mobile-menu-btn {
+            color: var(--gold);
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 25px;
+            background: currentColor;
+            border-radius: 3px;
+            opacity: 1;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn span:nth-child(1) {
+            top: 10px;
+        }
+
+        .mobile-menu-btn span:nth-child(2) {
+            top: 19px;
+        }
+
+        .mobile-menu-btn span:nth-child(3) {
+            top: 28px;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            top: 19px;
+            transform: translateX(-50%) rotate(45deg);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            top: 19px;
+            transform: translateX(-50%) rotate(-45deg);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--white);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            padding-top: 80px;
+        }
+
+        [data-theme="dark"] .mobile-menu {
+            background: var(--white);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-content {
+            padding: 2rem;
+        }
+
+        .mobile-nav-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-nav-item {
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.active .mobile-nav-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .mobile-menu.active .mobile-nav-item:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu.active .mobile-nav-item:nth-child(2) { transition-delay: 0.15s; }
+        .mobile-menu.active .mobile-nav-item:nth-child(3) { transition-delay: 0.2s; }
+        .mobile-menu.active .mobile-nav-item:nth-child(4) { transition-delay: 0.25s; }
+        .mobile-menu.active .mobile-nav-item:nth-child(5) { transition-delay: 0.3s; }
+        .mobile-menu.active .mobile-nav-item:nth-child(6) { transition-delay: 0.35s; }
+        .mobile-menu.active .mobile-nav-item:nth-child(7) { transition-delay: 0.4s; }
+
+        .mobile-nav-link {
+            text-decoration: none;
+            color: var(--green-deep);
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: block;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .mobile-nav-link {
+            color: var(--gold);
+        }
+
+        .mobile-nav-link:hover {
+            color: var(--gold);
+            transform: translateX(10px);
+        }
+
+        .mobile-menu-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            transition-delay: 0.5s;
+        }
+
+        .mobile-menu.active .mobile-menu-actions {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 1.75rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--green-deep);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #e0b845;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--green-deep);
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .section-alt {
+            background: white;
+        }
+
+        [data-theme="dark"] .section-alt {
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 4vw, 3rem);
+            color: var(--green-deep);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        [data-theme="dark"] .section-title {
+            color: var(--gold);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .section-subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--gray);
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--green-deep);
+            margin-bottom: 1rem;
+        }
+
+        [data-theme="dark"] .about-text h3 {
+            color: var(--gold);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .about-values {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            padding: 1.5rem;
+            background: var(--cream);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        [data-theme="dark"] .value-card {
+            background: var(--white);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .value-icon {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .about-images {
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        .about-img-main {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .about-img-secondary {
+            display: none;
+        }
+
+        /* Menu Section */
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .menu-tab {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--green-deep);
+            color: var(--green-deep);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        [data-theme="dark"] .menu-tab {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .menu-tab.active,
+        .menu-tab:hover {
+            background: var(--green-deep);
+            color: white;
+        }
+
+        [data-theme="dark"] .menu-tab.active,
+        [data-theme="dark"] .menu-tab:hover {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .menu-content {
+            display: none;
+        }
+
+        .menu-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        [data-theme="dark"] .menu-item {
+            background: #333;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--shadow-dark);
+        }
+
+        .menu-item-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover .menu-item-img {
+            transform: scale(1.1);
+        }
+
+        .menu-item-content {
+            padding: 1.5rem;
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .menu-item-name {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--green-deep);
+            margin: 0;
+        }
+
+        [data-theme="dark"] .menu-item-name {
+            color: var(--gold);
+        }
+
+        .menu-item-price {
+            font-size: 1.25rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .menu-item-desc {
+            color: var(--gray);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(13, 59, 38, 0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-caption {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Social Feed */
+        .social-feed {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .social-post {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        [data-theme="dark"] .social-post {
+            background: #333;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .social-post-header {
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        [data-theme="dark"] .social-post-header {
+            border-bottom: 1px solid #444;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--green-deep);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        [data-theme="dark"] .social-icon {
+            background: var(--gold);
+        }
+
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .news-card {
+            background: #333;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--shadow-dark);
+        }
+
+        .news-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-date {
+            color: var(--gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-title {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--green-deep);
+            margin-bottom: 1rem;
+        }
+
+        [data-theme="dark"] .news-title {
+            color: var(--gold);
+        }
+
+        .news-excerpt {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .news-link {
+            color: var(--green-deep);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        [data-theme="dark"] .news-link {
+            color: var(--gold);
+        }
+
+        .news-link:hover {
+            gap: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .contact-info h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--green-deep);
+            margin-bottom: 2rem;
+        }
+
+        [data-theme="dark"] .contact-info h3 {
+            color: var(--gold);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        [data-theme="dark"] .contact-icon {
+            background: var(--white);
+            color: var(--gold);
+        }
+
+        .contact-text h4 {
+            color: var(--green-deep);
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+        }
+
+        [data-theme="dark"] .contact-text h4 {
+            color: var(--gold);
+        }
+
+        .contact-text p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .map-container {
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--green-deep);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        [data-theme="dark"] footer {
+            background: #1A1A1A;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .footer-column p,
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--gold);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .footer-social .social-link {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-social .social-link:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-direction: column;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        [data-theme="dark"] .newsletter-input {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .newsletter-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--gold);
+            color: var(--green-deep);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(203, 161, 53, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 1.5rem;
+            box-shadow: 0 -5px 20px var(--shadow);
+            display: none;
+            z-index: 1000;
+        }
+
+        [data-theme="dark"] .cookie-banner {
+            background: #333;
+            color: var(--black);
+        }
+
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .cookie-text {
+            flex: 1;
+        }
+
+        .cookie-text p {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .cookie-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .cookie-accept {
+            background: var(--green-deep);
+            color: white;
+        }
+
+        .cookie-decline {
+            background: transparent;
+            color: var(--green-deep);
+            border: 2px solid var(--green-deep);
+        }
+
+        /* Responsive - Tablet */
+        @media (min-width: 768px) {
+            .section {
+                padding: 5rem 0;
+            }
+
+            .container {
+                padding: 0 2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+
+            .about-values {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            .about-img-secondary {
+                display: block;
+                position: absolute;
+                bottom: -30px;
+                right: -30px;
+                width: 50%;
+                border-radius: 10px;
+                box-shadow: 0 20px 40px var(--shadow-dark);
+                border: 5px solid white;
+            }
+
+            .value-card {
+                text-align: left;
+            }
+
+            .menu-tabs {
+                gap: 2rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item {
+                height: 300px;
+            }
+
+            .social-feed {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+                text-align: left;
+            }
+
+            .footer-social {
+                justify-content: flex-start;
+            }
+
+            .newsletter-form {
+                flex-direction: row;
+                margin-left: 0;
+            }
+
+            .cookie-content {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            .map-container {
+                height: 400px;
+            }
+        }
+
+        /* Responsive - Desktop */
+        @media (min-width: 1024px) {
+            .menu-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .news-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .menu-item-img {
+                height: 250px;
+            }
+        }
+
+        /* Responsive - Mobile Specific */
+        @media (max-width: 767px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu,
+            .nav-actions {
+                display: none;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .nav-logo img {
+                height: 40px;
+            }
+
+            .nav-logo-text {
+                font-size: 1.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+
+            .menu-tab {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                background: url('images/hero/fallback.jpg') center/cover no-repeat;
+            }
+
+            .hero-video {
+                display: none;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 375px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .menu-item-name {
+                font-size: 1.1rem;
+            }
+
+            .menu-tab {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            color: var(--green-deep);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        /* Scroll Progress Indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gold);
+            z-index: 1001;
+            transition: width 0.2s ease;
+        }
+
+        /* Lazy Loading Images */
+        img.lazy {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        img.lazy.loaded {
+            opacity: 1;
+        }
+
+        /* Touch Feedback */
+        @media (hover: none) {
+            .btn:active,
+            .menu-tab:active,
+            .social-link:active {
+                transform: scale(0.95);
+            }
+        }
+
+        /* Improve Focus States for Accessibility */
+        a:focus,
+        button:focus,
+        input:focus,
+        textarea:focus {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        /* Skip to Content Link for Accessibility */
+        .skip-to-content {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--green-deep);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 0 0 5px 0;
+            transition: top 0.3s ease;
+        }
+
+        .skip-to-content:focus {
+            top: 0;
+        }
+
+        /* Loading Skeleton for Images */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Parallax Effect for Hero */
+        @media (min-width: 768px) {
+            .hero-video {
+                transform: translateX(-50%) translateY(-50%) scale(1.1);
+            }
+        }
+
+        /* Improved Card Hover Effects */
+        @media (hover: hover) {
+            .menu-item {
+                transform: translateY(0);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .menu-item:hover {
+                transform: translateY(-10px) scale(1.02);
+            }
+
+            .value-card {
+                transform: translateY(0);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .value-card:hover {
+                transform: translateY(-5px) scale(1.05);
+            }
+        }
+
+        /* Smooth Scroll Behavior */
+        @media (prefers-reduced-motion: no-preference) {
+            html {
+                scroll-behavior: smooth;
+            }
+        }
+
+        /* Better Typography for Mobile */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                -webkit-text-size-adjust: 100%;
+            }
+
+            p {
+                line-height: 1.7;
+            }
+        }
+
+        /* Optimized Touch Targets */
+        @media (max-width: 768px) {
+            .btn,
+            .menu-tab,
+            .social-link,
+            .nav-link,
+            .mobile-nav-link {
+                min-height: 44px;
+                min-width: 44px;
+            }
+        }
+
+        /* Performance Optimizations */
+        .menu-item-img,
+        .gallery-item img,
+        .news-img {
+            will-change: transform;
+        }
+
+        /* Reduce Motion for Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* Additional Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes titleUnderline {
+            from {
+                width: 0;
+            }
+            to {
+                width: 60px;
+            }
+        }
+
+        .title-animated::after {
+            animation: titleUnderline 0.8s ease forwards;
+        }
+
+        /* Animate sections on scroll */
+        .section {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .section.visible {
+            opacity: 1;
+        }
+
+        /* Button hover effects */
+        .btn {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Enhanced card animations */
+        .menu-item,
+        .value-card,
+        .gallery-item,
+        .news-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-item:hover,
+        .news-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px var(--shadow-dark);
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px var(--shadow-dark);
+        }
+
+        /* Image hover effects */
+        .menu-item-img,
+        .gallery-item img,
+        .news-img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-item:hover .menu-item-img,
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+
+        /* Social links animation */
+        .social-link {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        .social-link:hover::before {
+            left: 100%;
+        }
+
+        /* Nav link animation enhancement */
+        .nav-link {
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        /* Gallery overlay animation */
+        .gallery-overlay {
+            background: linear-gradient(to bottom, transparent, rgba(13, 59, 38, 0.9));
+            backdrop-filter: blur(2px);
+        }
+
+        .gallery-caption {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to Content Link -->
+    <a href="#accueil" class="skip-to-content">Aller au contenu principal</a>
+    
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='90' fill='none' stroke='%23CBA135' stroke-width='2'/%3E%3Ccircle cx='100' cy='100' r='85' fill='none' stroke='%23CBA135' stroke-width='1'/%3E%3Ctext x='100' y='110' text-anchor='middle' font-family='serif' font-size='60' fill='%230D3B26'%3EYP%3C/text%3E%3C/svg%3E" alt="Yörem Logo" class="loader-logo">
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='90' fill='none' stroke='%23CBA135' stroke-width='2'/%3E%3Ccircle cx='100' cy='100' r='85' fill='none' stroke='%23CBA135' stroke-width='1'/%3E%3Ctext x='100' y='110' text-anchor='middle' font-family='serif' font-size='60' fill='%230D3B26'%3EYP%3C/text%3E%3C/svg%3E" alt="Yörem Logo">
+                <span class="nav-logo-text">YÖREM Pâtisserie</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="#accueil" class="nav-link" data-fr="Accueil" data-tr="Ana Sayfa">Accueil</a></li>
+                <li><a href="#about" class="nav-link" data-fr="À propos" data-tr="Hakkımızda">À propos</a></li>
+                <li><a href="#menu" class="nav-link" data-fr="Menu" data-tr="Menü">Menu</a></li>
+                <li><a href="#horaires" class="nav-link" data-fr="Horaires" data-tr="Çalışma Saatleri">Horaires</a></li>
+                <li><a href="#galerie" class="nav-link" data-fr="Galerie" data-tr="Galeri">Galerie</a></li>
+                <li><a href="#actualites" class="nav-link" data-fr="Actualités" data-tr="Haberler">Actualités</a></li>
+                <li><a href="#contact" class="nav-link" data-fr="Contact" data-tr="İletişim">Contact</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" title="Changer le thème">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                
+                <div class="lang-switch">
+                    <button class="lang-btn active" data-lang="fr">FR</button>
+                    <button class="lang-btn" data-lang="tr">TR</button>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://www.instagram.com/yoremofficial/" target="_blank" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@yorempatisserie" target="_blank" class="social-link">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-list">
+                <li class="mobile-nav-item">
+                    <a href="#accueil" class="mobile-nav-link" data-fr="Accueil" data-tr="Ana Sayfa">Accueil</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#about" class="mobile-nav-link" data-fr="À propos" data-tr="Hakkımızda">À propos</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#menu" class="mobile-nav-link" data-fr="Menu" data-tr="Menü">Menu</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#horaires" class="mobile-nav-link" data-fr="Horaires" data-tr="Çalışma Saatleri">Horaires</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#galerie" class="mobile-nav-link" data-fr="Galerie" data-tr="Galeri">Galerie</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#actualites" class="mobile-nav-link" data-fr="Actualités" data-tr="Haberler">Actualités</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#contact" class="mobile-nav-link" data-fr="Contact" data-tr="İletişim">Contact</a>
+                </li>
+            </ul>
+            
+            <div class="mobile-menu-actions">
+                <div class="mobile-menu-row">
+                    <span data-fr="Thème" data-tr="Tema" style="font-weight: 600;">Thème</span>
+                    <button class="theme-toggle" id="mobileThemeToggle" title="Changer le thème">
+                        <i class="fas fa-moon" id="mobileThemeIcon"></i>
+                    </button>
+                </div>
+                
+                <div class="mobile-menu-row">
+                    <span data-fr="Langue" data-tr="Dil" style="font-weight: 600;">Langue</span>
+                    <div class="lang-switch">
+                        <button class="lang-btn active" data-lang="fr">FR</button>
+                        <button class="lang-btn" data-lang="tr">TR</button>
+                    </div>
+                </div>
+                
+                <div class="social-links" style="justify-content: center;">
+                    <a href="https://www.instagram.com/yoremofficial/" target="_blank" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@yorempatisserie" target="_blank" class="social-link">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <!-- Vidéo en arrière-plan -->
+        <video class="hero-video" autoplay muted loop playsinline poster="images/hero/fallback.jpg">
+            <source src="images/galerie/mon-fond.mp4" type="video/mp4">
+            <source src="videos/mon-fond.webm" type="video/webm">
+            <!-- Message pour navigateurs anciens -->
+            Votre navigateur ne supporte pas la vidéo HTML5.
+        </video>
+
+        <!-- Contenu par-dessus la vidéo -->
+        <div class="hero-content">
+            <h1 class="hero-title">Yörem Pâtisserie</h1>
+            <p class="hero-subtitle" data-fr="Saveurs d'Orient & Savoir-Faire Artisanal" data-tr="Doğu Lezzetleri & Zanaatkâr Ustalığı">Saveurs d'Orient & Savoir-Faire Artisanal</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary" data-fr="Découvrir le menu" data-tr="Menüyü Keşfet">Découvrir le menu</a>
+                <a href="#horaires" class="btn btn-secondary" data-fr="Voir nos horaires" data-tr="Çalışma Saatlerimiz">Voir nos horaires</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-fr="Notre Histoire" data-tr="Hikayemiz">Notre Histoire</h2>
+                <p class="section-subtitle" data-fr="Une tradition familiale au service de l'excellence" data-tr="Mükemmellik hizmetinde bir aile geleneği">Une tradition familiale au service de l'excellence</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 data-fr="L'Art de la Pâtisserie Orientale" data-tr="Doğu Pastane Sanatı">L'Art de la Pâtisserie Orientale</h3>
+                    <p data-fr="Bienvenue chez Yörem Pâtisserie, où chaque création raconte une histoire de passion, de tradition et de savoir-faire transmis de génération en génération. Notre famille perpétue l'art ancestral de la pâtisserie orientale tout en y apportant une touche de modernité." data-tr="Yörem Pâtisserie'ye hoş geldiniz, burada her kreasyonumuz tutku, gelenek ve nesilden nesile aktarılan ustalığın hikayesini anlatır. Ailemiz, modern bir dokunuş katarak geleneksel doğu pastane sanatını sürdürmektedir.">Bienvenue chez Yörem Pâtisserie, où chaque création raconte une histoire de passion, de tradition et de savoir-faire transmis de génération en génération. Notre famille perpétue l'art ancestral de la pâtisserie orientale tout en y apportant une touche de modernité.</p>
+                    <p data-fr="Depuis notre ouverture à Meaux, nous nous engageons à offrir des produits d'exception, préparés chaque jour avec les meilleurs ingrédients et selon des recettes authentiques. Du baklava croustillant au künefe fondant, chaque bouchée est une invitation au voyage." data-tr="Meaux'daki açılışımızdan bu yana, her gün en iyi malzemelerle ve otantik tariflerle hazırlanan olağanüstü ürünler sunmaya kendimizi adadık. Çıtır baklavadan eriyen künefeye kadar her lokma bir yolculuğa davettir.">Depuis notre ouverture à Meaux, nous nous engageons à offrir des produits d'exception, préparés chaque jour avec les meilleurs ingrédients et selon des recettes authentiques. Du baklava croustillant au künefe fondant, chaque bouchée est une invitation au voyage.</p>
+                    
+                    <div class="about-values">
+                        <div class="value-card">
+                            <i class="fas fa-heart value-icon"></i>
+                            <h4 data-fr="Fait Maison" data-tr="Ev Yapımı">Fait Maison</h4>
+                            <p data-fr="Tout est préparé sur place avec amour" data-tr="Her şey sevgiyle yerinde hazırlanır">Tout est préparé sur place avec amour</p>
+                        </div>
+                        <div class="value-card">
+                            <i class="fas fa-leaf value-icon"></i>
+                            <h4 data-fr="Ingrédients Premium" data-tr="Premium Malzemeler">Ingrédients Premium</h4>
+                            <p data-fr="Sélection rigoureuse des meilleurs produits" data-tr="En iyi ürünlerin titizlikle seçimi">Sélection rigoureuse des meilleurs produits</p>
+                        </div>
+                        <div class="value-card">
+                            <i class="fas fa-clock value-icon"></i>
+                            <h4 data-fr="Fraîcheur Garantie" data-tr="Tazelik Garantisi">Fraîcheur Garantie</h4>
+                            <p data-fr="Production quotidienne pour une qualité optimale" data-tr="Optimum kalite için günlük üretim">Production quotidienne pour une qualité optimale</p>
+                        </div>
+                        <div class="value-card">
+                            <i class="fas fa-users value-icon"></i>
+                            <h4 data-fr="Accueil Chaleureux" data-tr="Sıcak Karşılama">Accueil Chaleureux</h4>
+                            <p data-fr="Une expérience authentique et conviviale" data-tr="Otantik ve samimi bir deneyim">Une expérience authentique et conviviale</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-images">
+                    <img src="images/galerie/interieur-moderne.jpg" alt="Intérieur Yörem Pâtisserie" class="about-img-main">
+                    <img src="images/galerie/logo-lumineux.jpg" alt="Logo Yörem" class="about-img-secondary">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+<section class="section section-alt" id="menu">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title" data-fr="Notre Menu" data-tr="Menümüz">Notre Menu</h2>
+            <p class="section-subtitle" data-fr="Découvrez nos délicieuses créations artisanales" data-tr="Lezzetli el yapımı kreasyonlarımızı keşfedin">Découvrez nos délicieuses créations artisanales</p>
+        </div>
+        
+        <!-- Menu Categories Navigation -->
+        <div class="menu-categories">
+            <button class="category-btn active" data-category="entrees" data-fr="Entrées & Petits Plats" data-tr="Mezeler & Küçük Tabaklar">Entrées & Petits Plats</button>
+            <button class="category-btn" data-category="plats" data-fr="Plats Principaux" data-tr="Ana Yemekler">Plats Principaux</button>
+            <button class="category-btn" data-category="desserts" data-fr="Desserts" data-tr="Tatlılar">Desserts</button>
+            <button class="category-btn" data-category="boissons" data-fr="Boissons" data-tr="İçecekler">Boissons</button>
+        </div>
+        
+        <!-- Entrées & Petits Plats -->
+        <div class="menu-category active" id="entrees">
+            <h3 class="category-title" data-fr="Entrées & Petits Plats" data-tr="Mezeler & Küçük Tabaklar">Entrées & Petits Plats</h3>
+            <div class="menu-grid">
+                <!-- Patates salatası -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1546069901-4513b2c10a05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Patates salatası" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Patates salatası" data-tr="Patates salatası">Patates salatası</h3>
+                            <span class="menu-item-price">14€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Salade de pommes de terre traditionnelle turque" data-tr="Geleneksel Türk patates salatası">Salade de pommes de terre traditionnelle turque</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Végétarien" data-tr="Vejetaryen">Végétarien</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kısır -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1543340905-47d331c836a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Kısır" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Kısır" data-tr="Kısır">Kısır</h3>
+                            <span class="menu-item-price">14€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Taboulé turc à base de boulgour fin et épices" data-tr="İnce bulgurdan yapılan Türk taboule'u">Taboulé turc à base de boulgour fin et épices</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Végétarien" data-tr="Vejetaryen">Végétarien</span>
+                            <span class="tag" data-fr="Spécialité" data-tr="Özel">Spécialité</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cacık -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1603105038146-22d6bfe6f7d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Cacık" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Cacık" data-tr="Cacık">Cacık</h3>
+                            <span class="menu-item-price">14€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Salade de concombre au yaourt à la turque" data-tr="Türk usulü yoğurtlu salatalık">Salade de concombre au yaourt à la turque</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Végétarien" data-tr="Vejetaryen">Végétarien</span>
+                            <span class="tag" data-fr="Rafraîchissant" data-tr="Serinletici">Rafraîchissant</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Menemen -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1556909212-d5b604d0c90d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Menemen" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Menemen" data-tr="Menemen">Menemen</h3>
+                            <span class="menu-item-price">7€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Ragoût de légumes et d'œufs à la turque" data-tr="Türk usulü sebze ve yumurta kavurması">Ragoût de légumes et d'œufs à la turque</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Classique" data-tr="Klasik">Classique</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sucuklu omlet -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1556909211-3695d4f2f0f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Sucuklu omlet" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Sucuklu omlet" data-tr="Sucuklu omlet">Sucuklu omlet</h3>
+                            <span class="menu-item-price">7€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Omelette au saucisson turc épicé" data-tr="Baharatlı Türk sucuğu ile omlet">Omelette au saucisson turc épicé</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Épicé" data-tr="Baharatlı">Épicé</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Poğaça/Açma -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1601050690117-94f5f6fa3bd0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Poğaça/Açma" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Poğaça/Açma" data-tr="Poğaça/Açma">Poğaça/Açma</h3>
+                            <span class="menu-item-price">2€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Petit pain turc moelleux et savoureux" data-tr="Yumuşak ve lezzetli Türk ekmeği">Petit pain turc moelleux et savoureux</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="En-cas" data-tr="Atıştırmalık">En-cas</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sade Poğaça -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1601050690117-94f5f6fa3bd0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Sade Poğaça" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Sade Poğaça" data-tr="Sade Poğaça">Sade Poğaça</h3>
+                            <span class="menu-item-price">1.50€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Petit pain turc nature et traditionnel" data-tr="Sade ve geleneksel Türk ekmeği">Petit pain turc nature et traditionnel</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Simple" data-tr="Sade">Simple</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Simit -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1592415499556-74fcb9b2705f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Simit" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Simit" data-tr="Simit">Simit</h3>
+                            <span class="menu-item-price">1.50€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Pain en anneau au sésame, le bagel turc" data-tr="Susamlı halka ekmek, Türk simiği">Pain en anneau au sésame, le bagel turc</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Classique" data-tr="Klasik">Classique</span>
+                            <span class="tag" data-fr="Sésame" data-tr="Susam">Sésame</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plats Principaux -->
+        <div class="menu-category" id="plats">
+            <h3 class="category-title" data-fr="Plats Principaux" data-tr="Ana Yemekler">Plats Principaux</h3>
+            <div class="menu-grid">
+                <!-- Somon balığı tabağı -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Somon balığı tabağı" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Assiette de saumon" data-tr="Somon balığı tabağı">Assiette de saumon</h3>
+                            <span class="menu-item-price">14€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Saumon grillé servi avec salade et frites" data-tr="Salata ve patates kızartması ile servis edilen ızgara somon">Saumon grillé servi avec salade et frites</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Poisson" data-tr="Balık">Poisson</span>
+                            <span class="tag" data-fr="Grillé" data-tr=" Izgara">Grillé</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Makarna -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Makarna" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Makarna" data-tr="Makarna">Makarna</h3>
+                            <span class="menu-item-price">12€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Pâtes sauce tomates et fromage maison" data-tr="Ev yapımı domates sosu ve peynirli makarna">Pâtes sauce tomates et fromage maison</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Végétarien" data-tr="Vejetaryen">Végétarien</span>
+                            <span class="tag" data-fr="Maison" data-tr="Ev yapımı">Maison</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mantı -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Mantı" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Mantı" data-tr="Mantı">Mantı</h3>
+                            <span class="menu-item-price">14€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Raviolis turcs à la viande hachée servis avec yaourt" data-tr="Kıymalı Türk mantısı, yoğurt ile servis">Raviolis turcs à la viande hachée servis avec yaourt</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Spécialité" data-tr="Özel">Spécialité</span>
+                            <span class="tag" data-fr="Traditionnel" data-tr="Geleneksel">Traditionnel</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tek kişilik kahvaltı -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Brunch seul" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Brunch seul" data-tr="Tek kişilik kahvaltı">Brunch seul</h3>
+                            <span class="menu-item-price">11€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Assortiment petit-déjeuner turc pour une personne" data-tr="Bir kişilik Türk kahvaltısı çeşitleri">Assortiment petit-déjeuner turc pour une personne</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Complet" data-tr="Tam">Complet</span>
+                            <span class="tag" data-fr="Brunch" data-tr="Kahvaltı">Brunch</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Serpme kahvaltı -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Brunch à plusieurs" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Brunch à plusieurs" data-tr="Serpme kahvaltı">Brunch à plusieurs</h3>
+                            <span class="menu-item-price">17.50€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Assortiment petit-déjeuner turc partagé par personne" data-tr="Kişi başı serpme Türk kahvaltısı">Assortiment petit-déjeuner turc partagé par personne</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Partage" data-tr="Paylaşım">Partage</span>
+                            <span class="tag" data-fr="Copieux" data-tr="Doyurucu">Copieux</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kıymalı kol böreği -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1601050690117-94f5f6fa3bd0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Börek viande" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Börek viande" data-tr="Kıymalı kol böreği">Börek viande</h3>
+                            <span class="menu-item-price">6€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Feuilleté turc à la viande hachée" data-tr="Kıymalı Türk böreği">Feuilleté turc à la viande hachée</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Salé" data-tr="Tuzlu">Salé</span>
+                            <span class="tag" data-fr="Artisanal" data-tr="El yapımı">Artisanal</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Peynirli kol böreği -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1601050690117-94f5f6fa3bd0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Börek fromage" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Börek fromage" data-tr="Peynirli kol böreği">Börek fromage</h3>
+                            <span class="menu-item-price">6€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Feuilleté turc au fromage blanc" data-tr="Beyaz peynirli Türk böreği">Feuilleté turc au fromage blanc</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Végétarien" data-tr="Vejetaryen">Végétarien</span>
+                            <span class="tag" data-fr="Fromage" data-tr="Peynir">Fromage</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sandviç -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1553909486-c893f2d7d644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Sandviç" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Sandviç" data-tr="Sandviç">Sandviç</h3>
+                            <span class="menu-item-price">4€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Sandwich turc traditionnel garni" data-tr="Geleneksel Türk sandviçi">Sandwich turc traditionnel garni</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Rapide" data-tr="Hızlı">Rapide</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Su böreği -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1601050690117-94f5f6fa3bd0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Su böreği" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Su böreği" data-tr="Su böreği">Su böreği</h3>
+                            <span class="menu-item-price">4€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Feuilleté turc traditionnel aux couches fines" data-tr="İnce katmanlı geleneksel Türk böreği">Feuilleté turc traditionnel aux couches fines</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Traditionnel" data-tr="Geleneksel">Traditionnel</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tahinli çörek -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Tahinli çörek" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Tahinli çörek" data-tr="Tahinli çörek">Tahinli çörek</h3>
+                            <span class="menu-item-price">5€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Brioche turque à la pâte de sésame" data-tr="Tahin ezmeli Türk çöreği">Brioche turque à la pâte de sésame</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Sucré" data-tr="Tatlı">Sucré</span>
+                            <span class="tag" data-fr="Sésame" data-tr="Tahin">Sésame</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lahmacun -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1633321702518-7feccafb94d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Lahmacun" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Lahmacun" data-tr="Lahmacun">Lahmacun</h3>
+                            <span class="menu-item-price">4€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Pizza turque fine à la viande hachée épicée" data-tr="Baharatlı kıymalı ince Türk pidesi">Pizza turque fine à la viande hachée épicée</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Street food" data-tr="Sokak lezzeti">Street food</span>
+                            <span class="tag" data-fr="Épicé" data-tr="Baharatlı">Épicé</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gözleme -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Gözleme" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Gözleme" data-tr="Gözleme">Gözleme</h3>
+                            <span class="menu-item-price">6€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Crêpe turque farcie (fromage/pommes de terre/épinards)" data-tr="İçi doldurulmuş Türk krep (peynir/patates/ıspanak)">Crêpe turque farcie (fromage/pommes de terre/épinards)</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Street food" data-tr="Sokak lezzeti">Street food</span>
+                            <span class="tag" data-fr="Farci" data-tr="İç harçlı">Farci</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Desserts -->
+        <div class="menu-category" id="desserts">
+            <h3 class="category-title" data-fr="Desserts" data-tr="Tatlılar">Desserts</h3>
+            <div class="menu-grid">
+                <!-- Künefe -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Künefe" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Künefe" data-tr="Künefe">Künefe</h3>
+                            <span class="menu-item-price">7€ <small data-fr="(+2€ avec glace)" data-tr="(+2€ dondurma ile)">(+2€ avec glace)</small></span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Dessert chaud au fromage filé et sirop parfumé" data-tr="Peynirli sıcak tatlı, şerbetli">Dessert chaud au fromage filé et sirop parfumé</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Spécialité" data-tr="Özel">Spécialité</span>
+                            <span class="tag" data-fr="Best-seller" data-tr="En çok satılan">Best-seller</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Künefe 3 personnes -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Künefe 3 personnes" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Künefe (3 pers.)" data-tr="Künefe (3 kişilik)">Künefe (3 pers.)</h3>
+                            <span class="menu-item-price">16€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Partagez ce délice traditionnel entre amis" data-tr="Bu geleneksel lezzeti arkadaşlarınızla paylaşın">Partagez ce délice traditionnel entre amis</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Partage" data-tr="Paylaşım">Partage</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Künefe 4 personnes -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Künefe 4 personnes" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Künefe (4 pers.)" data-tr="Künefe (4 kişilik)">Künefe (4 pers.)</h3>
+                            <span class="menu-item-price">23€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Grand format familial pour 4 personnes" data-tr="4 kişilik büyük aile boy">Grand format familial pour 4 personnes</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Famille" data-tr="Aile">Famille</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Havuç dilim -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Havuç dilim" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Havuç dilim" data-tr="Havuç dilim">Havuç dilim</h3>
+                            <span class="menu-item-price">7€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Gâteau à la carotte avec glace vanille" data-tr="Vanilyalı dondurma ile havuç pastası">Gâteau à la carotte avec glace vanille</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Avec glace" data-tr="Dondurmalı">Avec glace</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Karışık tatlı -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Karışık tatlı" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Assortiment de desserts" data-tr="Karışık tatlı">Assortiment de desserts</h3>
+                            <span class="menu-item-price">6€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="3 pièces de desserts variés pour découvrir" data-tr="Keşfetmek için 3 çeşit tatlı">3 pièces de desserts variés pour découvrir</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Dégustation" data-tr="Tadım">Dégustation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kurabiye -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1586449480533-99c5f17fe1a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Kurabiye" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Kurabiye" data-tr="Kurabiye">Kurabiye</h3>
+                            <span class="menu-item-price">5€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="5 sablés turcs traditionnels faits maison" data-tr="5 adet ev yapımı geleneksel Türk kurabiyesi">5 sablés turcs traditionnels faits maison</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="5 pièces" data-tr="5 adet">5 pièces</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kadayıf -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Kadayıf" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Kadayıf" data-tr="Kadayıf">Kadayıf</h3>
+                            <span class="menu-item-price">5€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Pâtisserie orientale aux cheveux d'ange et noix" data-tr="Tel kadayıf ve cevizli Doğu tatlısı">Pâtisserie orientale aux cheveux d'ange et noix</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Classique" data-tr="Klasik">Classique</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Trileçe -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1560180474-e856c536b7c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Trileçe" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Trileçe" data-tr="Trileçe">Trileçe</h3>
+                            <span class="menu-item-price">4€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Gâteau aux trois laits, spécialité des Balkans" data-tr="Üç sütlü pasta, Balkan özelliği">Gâteau aux trois laits, spécialité des Balkans</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Moelleux" data-tr="Yumuşak">Moelleux</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tiramisu -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1560180474-e856c536b7c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Tiramisu" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Tiramisu" data-tr="Tiramisu">Tiramisu</h3>
+                            <span class="menu-item-price">4€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Version turque du classique italien au café" data-tr="Kahveli İtalyan klasiğinin Türk versiyonu">Version turque du classique italien au café</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Café" data-tr="Kahve">Café</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dilim pasta -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Dilim pasta" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Part de gâteau" data-tr="Dilim pasta">Part de gâteau</h3>
+                            <span class="menu-item-price">5€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Notre sélection du jour, fait maison" data-tr="Günün seçimi, ev yapımı">Notre sélection du jour, fait maison</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Du jour" data-tr="Günlük">Du jour</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Islak kek -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1560180474-e856c536b7c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Islak kek" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Islak kek" data-tr="Islak kek">Islak kek</h3>
+                            <span class="menu-item-price">4€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Gâteau humide au chocolat, spécialité turque" data-tr="Çikolatalı ıslak kek, Türk özelliği">Gâteau humide au chocolat, spécialité turque</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Chocolat" data-tr="Çikolata">Chocolat</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Soğuk baklava -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1607923432600-2455a5dfa3c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Soğuk baklava" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Soğuk baklava" data-tr="Soğuk baklava">Soğuk baklava</h3>
+                            <span class="menu-item-price">6€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Baklava glacé, version moderne et rafraîchissante" data-tr="Soğuk baklava, modern ve serinletici versiyon">Baklava glacé, version moderne et rafraîchissante</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Nouveauté" data-tr="Yenilik">Nouveauté</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Boissons -->
+        <div class="menu-category" id="boissons">
+            <h3 class="category-title" data-fr="Boissons" data-tr="İçecekler">Boissons</h3>
+            <div class="menu-grid">
+                <!-- Thé turc -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1597318181409-cf64d0b5d8a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Thé turc" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Thé turc" data-tr="Türk çayı">Thé turc</h3>
+                            <span class="menu-item-price">1.50€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Thé noir de Rize servi dans un verre traditionnel" data-tr="Geleneksel bardakta servis edilen Rize çayı">Thé noir de Rize servi dans un verre traditionnel</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Traditionnel" data-tr="Geleneksel">Traditionnel</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Café espresso -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Café espresso" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Café espresso" data-tr="Espresso kahve">Café espresso</h3>
+                            <span class="menu-item-price">1.50€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Espresso italien intense et aromatique" data-tr="Yoğun ve aromatik İtalyan espresso'su">Espresso italien intense et aromatique</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Fort" data-tr="Güçlü">Fort</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Café turc -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Café turc" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Café turc" data-tr="Türk kahvesi">Café turc</h3>
+                            <span class="menu-item-price">2.50€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Café moulu très fin, préparé selon la tradition turque" data-tr="Türk geleneğine göre hazırlanan çok ince öğütülmüş kahve">Café moulu très fin, préparé selon la tradition turque</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="UNESCO" data-tr="UNESCO">UNESCO</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Café allongé -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Café allongé" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Café allongé" data-tr="Uzun kahve">Café allongé</h3>
+                            <span class="menu-item-price">2€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Café filtre doux à la turque" data-tr="Türk usulü yumuşak filtre kahve">Café filtre doux à la turque</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Doux" data-tr="Yumuşak">Doux</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chocolat chaud -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1574085733277-851d9d856a3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Chocolat chaud" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Chocolat chaud" data-tr="Sıcak çikolata">Chocolat chaud</h3>
+                            <span class="menu-item-price">2€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Chocolat chaud maison onctueux et réconfortant" data-tr="Kremsi ve rahatlatıcı ev yapımı sıcak çikolata">Chocolat chaud maison onctueux et réconfortant</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Réconfortant" data-tr="Rahatlatıcı">Réconfortant</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Canette -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1551029506-0807df4e2031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Canette" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Canette" data-tr="Kutu içecek">Canette</h3>
+                            <span class="menu-item-price">2€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Soda ou boisson gazeuse au choix" data-tr="Seçiminize göre soda veya gazlı içecek">Soda ou boisson gazeuse au choix</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Gazeux" data-tr="Gazlı">Gazeux</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Limonade turque -->
+                <div class="menu-item">
+                    <div class="menu-item-img-container">
+                        <img src="https://images.unsplash.com/photo-1551029506-0807df4e2031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Limonade turque" class="menu-item-img">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-name" data-fr="Limonade turque" data-tr="Türk limonatası">Limonade turque</h3>
+                            <span class="menu-item-price">2.50€</span>
+                        </div>
+                        <p class="menu-item-desc" data-fr="Limonade maison rafraîchissante avec menthe fraîche" data-tr="Taze nane ile serinletici ev yapımı limonata">Limonade maison rafraîchissante avec menthe fraîche</p>
+                        <div class="menu-item-tags">
+                            <span class="tag" data-fr="Maison" data-tr="Ev yapımı">Maison</span>
+                            <span class="tag" data-fr="Menthe" data-tr="Naneli">Menthe</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    /* Menu Section Styles */
+    .menu-categories {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+    }
+    
+    .category-btn {
+        padding: 0.75rem 1.5rem;
+        background: transparent;
+        border: 2px solid var(--green-deep);
+        color: var(--green-deep);
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+    }
+    
+    [data-theme="dark"] .category-btn {
+        border-color: var(--gold);
+        color: var(--gold);
+    }
+    
+    .category-btn.active,
+    .category-btn:hover {
+        background: var(--green-deep);
+        color: white;
+    }
+    
+    [data-theme="dark"] .category-btn.active,
+    [data-theme="dark"] .category-btn:hover {
+        background: var(--gold);
+        color: var(--white);
+    }
+    
+    .menu-category {
+        display: none;
+        animation: fadeIn 0.5s ease;
+    }
+    
+    .menu-category.active {
+        display: block;
+    }
+    
+    .category-title {
+        font-size: 1.8rem;
+        color: var(--green-deep);
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
+    }
+    
+    [data-theme="dark"] .category-title {
+        color: var(--gold);
+    }
+    
+    .category-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--gold);
+    }
+    
+    .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+    
+    .menu-item {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px var(--shadow);
+        transition: all 0.3s ease;
+    }
+    
+    [data-theme="dark"] .menu-item {
+        background: #333;
+        box-shadow: 0 10px 30px var(--shadow);
+    }
+    
+    .menu-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px var(--shadow-dark);
+    }
+    
+    .menu-item-img-container {
+        height: 200px;
+        overflow: hidden;
+    }
+    
+    .menu-item-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    
+    .menu-item:hover .menu-item-img {
+        transform: scale(1.1);
+    }
+    
+    .menu-item-content {
+        padding: 1.5rem;
+    }
+    
+    .menu-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 0.5rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .menu-item-name {
+        font-size: 1.2rem;
+        color: var(--green-deep);
+        margin: 0;
+    }
+    
+    [data-theme="dark"] .menu-item-name {
+        color: var(--gold);
+    }
+    
+    .menu-item-price {
+        font-size: 1.1rem;
+        color: var(--gold);
+        font-weight: 700;
+    }
+    
+    .menu-item-price small {
+        font-size: 0.8rem;
+        color: var(--gray);
+        font-weight: normal;
+    }
+    
+    .menu-item-desc {
+        color: var(--gray);
+        line-height: 1.6;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    
+    .menu-item-tags {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .tag {
+        background: var(--cream);
+        color: var(--green-deep);
+        padding: 0.25rem 0.75rem;
+        border-radius: 50px;
+        font-size: 0.7rem;
+        font-weight: 600;
+    }
+    
+    [data-theme="dark"] .tag {
+        background: var(--white);
+        color: var(--green-deep);
+    }
+    
+    @media (max-width: 768px) {
+        .menu-categories {
+            gap: 0.5rem;
+        }
+        
+        .category-btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+        
+        .menu-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    // Simple category switching
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons and categories
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.menu-category').forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked button
+            btn.classList.add('active');
+            
+            // Show corresponding category
+            const categoryId = btn.getAttribute('data-category');
+            document.getElementById(categoryId).classList.add('active');
+        });
+    });
+</script>
+
+    <!-- Schedule Section -->
+    <section class="section" id="horaires">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-fr="Horaires & Localisation" data-tr="Çalışma Saatleri & Konum">Horaires & Localisation</h2>
+                <p class="section-subtitle" data-fr="Nous vous accueillons 7j/7" data-tr="Haftanın 7 günü hizmetinizdeyiz">Nous vous accueillons 7j/7</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3 data-fr="Venez nous rendre visite" data-tr="Bizi Ziyaret Edin">Venez nous rendre visite</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4 data-fr="Horaires d'ouverture" data-tr="Açılış Saatleri">Horaires d'ouverture</h4>
+                            <p data-fr="Lundi - Dimanche : 05h30 - 21h00" data-tr="Pazartesi - Pazar : 05:30 - 21:00">Lundi - Dimanche : 05h30 - 21h00</p>
+                            <p data-fr="Ouvert tous les jours de l'année" data-tr="Yılın her günü açık">Ouvert tous les jours de l'année</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4 data-fr="Adresse" data-tr="Adres">Adresse</h4>
+                            <p>1 rue Aristide Briand</p>
+                            <p>77100 Meaux</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4 data-fr="Téléphone" data-tr="Telefon">Téléphone</h4>
+                            <p>09 83 93 16 60</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2618.985968406927!2d2.8764!3d48.9564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e8a1b5c5a5a5a5%3A0x0!2s1%20Rue%20Aristide%20Briand%2C%2077100%20Meaux!5e0!3m2!1sfr!2sfr!4v1234567890"
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section section-alt" id="galerie">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-fr="Galerie & Réseaux Sociaux" data-tr="Galeri & Sosyal Medya">Galerie & Réseaux Sociaux</h2>
+                <p class="section-subtitle" data-fr="Suivez-nous pour découvrir nos dernières créations" data-tr="Son kreasyonlarımızı keşfetmek için bizi takip edin">Suivez-nous pour découvrir nos dernières créations</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/produits/gateau-fruits.jpg" alt="Gâteaux aux fruits">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption" data-fr="Nos créations fruitées" data-tr="Meyveli kreasyonlarımız">Nos créations fruitées</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/galerie/interieur-moderne.jpg" alt="Intérieur Yörem">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption" data-fr="Notre espace moderne" data-tr="Modern alanımız">Notre espace moderne</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/produits/donuts-couleurs.jpg" alt="Donuts colorés">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption" data-fr="Donuts artisanaux" data-tr="El yapımı donutlar">Donuts artisanaux</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/galerie/vitrine-baklava.jpg" alt="Vitrine baklava">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption" data-fr="Notre sélection de baklava" data-tr="Baklava seçkimiz">Notre sélection de baklava</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/produits/gateau-mariage.jpg" alt="Gâteau de mariage">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption" data-fr="Créations sur mesure" data-tr="Özel tasarımlar">Créations sur mesure</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/galerie/facade-exterieure.jpg" alt="Façade Yörem">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption" data-fr="Bienvenue chez Yörem" data-tr="Yörem'e hoş geldiniz">Bienvenue chez Yörem</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-feed">
+                <div class="social-post">
+                    <div class="social-post-header">
+                        <div class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div>
+                            <strong>@yoremofficial</strong>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--gray);">Instagram</p>
+                        </div>
+                    </div>
+                    <div style="padding: 1rem;">
+                        <p data-fr="Suivez-nous sur Instagram pour découvrir nos créations quotidiennes et les coulisses de notre atelier !" data-tr="Günlük kreasyonlarımızı ve atölyemizin perde arkasını keşfetmek için bizi Instagram'da takip edin!">Suivez-nous sur Instagram pour découvrir nos créations quotidiennes et les coulisses de notre atelier !</p>
+                        <a href="https://www.instagram.com/yoremofficial/" target="_blank" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;" data-fr="Voir notre Instagram" data-tr="Instagram'ımızı Gör">Voir notre Instagram</a>
+                    </div>
+                </div>
+                
+                <div class="social-post">
+                    <div class="social-post-header">
+                        <div class="social-icon">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                        <div>
+                            <strong>@yorempatisserie</strong>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--gray);">TikTok</p>
+                        </div>
+                    </div>
+                    <div style="padding: 1rem;">
+                        <p data-fr="Découvrez nos vidéos de préparation en temps réel et apprenez nos secrets de fabrication !" data-tr="Gerçek zamanlı hazırlık videolarımızı keşfedin ve üretim sırlarımızı öğrenin!">Découvrez nos vidéos de préparation en temps réel et apprenez nos secrets de fabrication !</p>
+                        <a href="https://www.tiktok.com/@yorempatisserie" target="_blank" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;" data-fr="Voir notre TikTok" data-tr="TikTok'umuzu Gör">Voir notre TikTok</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="section" id="actualites">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-fr="Actualités" data-tr="Haberler">Actualités</h2>
+                <p class="section-subtitle" data-fr="Les dernières nouvelles de Yörem Pâtisserie" data-tr="Yörem Pâtisserie'den son haberler">Les dernières nouvelles de Yörem Pâtisserie</p>
+            </div>
+            
+            <div class="news-grid">
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=500&auto=format&fit=crop" alt="Nouvelle gamme" class="news-img">
+                    <div class="news-content">
+                        <p class="news-date">15 Décembre 2024</p>
+                        <h3 class="news-title" data-fr="Nouvelle gamme de pâtisseries d'hiver" data-tr="Yeni kış tatlıları serisi">Nouvelle gamme de pâtisseries d'hiver</h3>
+                        <p class="news-excerpt" data-fr="Découvrez nos créations spéciales pour la saison hivernale : baklava à la cannelle, künefe aux fruits d'hiver et nos nouvelles boissons chaudes épicées." data-tr="Kış sezonu için özel kreasyonlarımızı keşfedin: tarçınlı baklava, kış meyveli künefe ve yeni baharatlı sıcak içeceklerimiz.">Découvrez nos créations spéciales pour la saison hivernale : baklava à la cannelle, künefe aux fruits d'hiver et nos nouvelles boissons chaudes épicées.</p>
+                        <a href="#" class="news-link"><span data-fr="Lire la suite" data-tr="Devamını Oku">Lire la suite</span> <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <img src="images/galerie/atelier.png" alt="Atelier" class="news-img">
+                    <div class="news-content">
+                        <p class="news-date">8 Décembre 2024</p>
+                        <h3 class="news-title" data-fr="Ateliers de pâtisserie orientale" data-tr="Doğu tatlıları atölyesi">Ateliers de pâtisserie orientale</h3>
+                        <p class="news-excerpt" data-fr="Rejoignez-nous pour apprendre l'art du baklava ! Nos ateliers mensuels vous permettront de maîtriser les techniques traditionnelles." data-tr="Baklava sanatını öğrenmek için bize katılın! Aylık atölyelerimiz geleneksel teknikleri öğrenmenizi sağlayacak.">Rejoignez-nous pour apprendre l'art du baklava ! Nos ateliers mensuels vous permettront de maîtriser les techniques traditionnelles.</p>
+                        <a href="#" class="news-link"><span data-fr="Lire la suite" data-tr="Devamını Oku">Lire la suite</span> <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=500&auto=format&fit=crop" alt="Brunch" class="news-img">
+                    <div class="news-content">
+                        <p class="news-date">1er Décembre 2024</p>
+                        <h3 class="news-title" data-fr="Nouveau menu brunch du dimanche" data-tr="Yeni pazar brunch menüsü">Nouveau menu brunch du dimanche</h3>
+                        <p class="news-excerpt" data-fr="Notre brunch s'enrichit de nouvelles saveurs ! Découvrez nos œufs à la turque revisités et notre nouvelle sélection de mezze maison." data-tr="Brunch menümüz yeni lezzetlerle zenginleşiyor! Yeniden yorumlanan Türk usulü yumurtalarımızı ve ev yapımı meze seçkimizi keşfedin.">Notre brunch s'enrichit de nouvelles saveurs ! Découvrez nos œufs à la turque revisités et notre nouvelle sélection de mezze maison.</p>
+                        <a href="#" class="news-link"><span data-fr="Lire la suite" data-tr="Devamını Oku">Lire la suite</span> <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section section-alt" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-fr="Contactez-nous" data-tr="Bize Ulaşın">Contactez-nous</h2>
+                <p class="section-subtitle" data-fr="Une question ? N'hésitez pas à nous contacter" data-tr="Sorunuz mu var? Bizimle iletişime geçmekten çekinmeyin">Une question ? N'hésitez pas à nous contacter</p>
+            </div>
+            
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <p style="font-size: 1.1rem; margin-bottom: 2rem;" data-fr="Pour toute question, commande spéciale ou réservation pour un événement, n'hésitez pas à nous appeler ou à passer nous voir directement en boutique." data-tr="Her türlü soru, özel sipariş veya etkinlik rezervasyonu için bizi aramaktan veya doğrudan mağazamıza gelmekten çekinmeyin.">Pour toute question, commande spéciale ou réservation pour un événement, n'hésitez pas à nous appeler ou à passer nous voir directement en boutique.</p>
+                
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                    <a href="tel:0983931660" class="btn btn-primary">
+                        <i class="fas fa-phone" style="margin-right: 0.5rem;"></i>
+                        <span data-fr="Appelez-nous" data-tr="Bizi Arayın">Appelez-nous</span>
+                    </a>
+                    <a href="#horaires" class="btn btn-secondary" style="background: var(--green-deep); color: white; border-color: var(--green-deep);">
+                        <i class="fas fa-map-marker-alt" style="margin-right: 0.5rem;"></i>
+                        <span data-fr="Voir l'adresse" data-tr="Adresi Gör">Voir l'adresse</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='90' fill='none' stroke='%23CBA135' stroke-width='2'/%3E%3Ccircle cx='100' cy='100' r='85' fill='none' stroke='%23CBA135' stroke-width='1'/%3E%3Ctext x='100' y='110' text-anchor='middle' font-family='serif' font-size='60' fill='white'%3EYP%3C/text%3E%3C/svg%3E" alt="Yörem Logo" style="height: 80px; margin-bottom: 1rem;">
+                    <h3>YÖREM Pâtisserie</h3>
+                    <p data-fr="Saveurs d'Orient & Savoir-Faire Artisanal" data-tr="Doğu Lezzetleri & Zanaatkâr Ustalığı">Saveurs d'Orient & Savoir-Faire Artisanal</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/yoremofficial/" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@yorempatisserie" target="_blank" class="social-link">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 data-fr="Informations Pratiques" data-tr="Pratik Bilgiler">Informations Pratiques</h3>
+                    <p><strong data-fr="Horaires :" data-tr="Çalışma Saatleri:">Horaires :</strong><br>
+                    <span data-fr="Lundi - Dimanche : 05h30 - 21h00" data-tr="Pazartesi - Pazar : 05:30 - 21:00">Lundi - Dimanche : 05h30 - 21h00</span></p>
+                    <p><strong data-fr="Adresse :" data-tr="Adres:">Adresse :</strong><br>
+                    1 rue Aristide Briand<br>
+                    77100 Meaux</p>
+                    <p><strong data-fr="Téléphone :" data-tr="Telefon:">Téléphone :</strong><br>
+                    <a href="tel:0983931660">09 83 93 16 60</a></p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 data-fr="Newsletter" data-tr="Bülten">Newsletter</h3>
+                    <p data-fr="Inscrivez-vous pour recevoir nos actualités et offres spéciales" data-tr="Haberlerimizi ve özel tekliflerimizi almak için kaydolun">Inscrivez-vous pour recevoir nos actualités et offres spéciales</p>
+                    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                        <input type="email" class="newsletter-input" placeholder="Votre email" data-placeholder-fr="Votre email" data-placeholder-tr="E-postanız" required>
+                        <button type="submit" class="newsletter-btn" data-fr="S'inscrire" data-tr="Kaydol">S'inscrire</button>
+                    </form>
+                    <p style="font-size: 0.8rem; margin-top: 1rem;" data-fr="En vous inscrivant, vous acceptez notre politique de confidentialité et de recevoir nos communications." data-tr="Kaydolarak, gizlilik politikamızı ve iletişimlerimizi almayı kabul ediyorsunuz.">En vous inscrivant, vous acceptez notre politique de confidentialité et de recevoir nos communications.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+    <p>&copy; 2024 Yörem Pâtisserie. <span data-fr="Tous droits réservés." data-tr="Tüm hakları saklıdır.">Tous droits réservés.</span> | <a href="mentions-legales.html" style="color: inherit;" data-fr="Mentions légales" data-tr="Yasal Bildirimler">Mentions légales</a> | <a href="mentions-legales.html" style="color: inherit;" data-fr="Politique de confidentialité" data-tr="Gizlilik Politikası">Politique de confidentialité</a></p>
+</div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <p><strong data-fr="🍪 Nous utilisons des cookies" data-tr="🍪 Çerez kullanıyoruz">🍪 Nous utilisons des cookies</strong></p>
+                <p data-fr="Pour vous offrir la meilleure expérience possible, nous utilisons des cookies. Acceptez-vous leur utilisation ?" data-tr="Size en iyi deneyimi sunmak için çerezler kullanıyoruz. Kullanımlarını kabul ediyor musunuz?">Pour vous offrir la meilleure expérience possible, nous utilisons des cookies. Acceptez-vous leur utilisation ?</p>
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn cookie-accept" onclick="acceptCookies()" data-fr="Accepter" data-tr="Kabul et">Accepter</button>
+                <button class="cookie-btn cookie-decline" onclick="declineCookies()" data-fr="Refuser" data-tr="Reddet">Refuser</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Theme management
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const mobileThemeIcon = document.getElementById('mobileThemeIcon');
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        let currentTheme = 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle.addEventListener('click', toggleTheme);
+        if (mobileThemeToggle) {
+            mobileThemeToggle.addEventListener('click', toggleTheme);
+        }
+
+        function toggleTheme() {
+            currentTheme = htmlElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            htmlElement.setAttribute('data-theme', currentTheme);
+            updateThemeIcon(currentTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const icons = [themeIcon, mobileThemeIcon];
+            icons.forEach(icon => {
+                if (icon) {
+                    if (theme === 'dark') {
+                        icon.classList.remove('fa-moon');
+                        icon.classList.add('fa-sun');
+                    } else {
+                        icon.classList.remove('fa-sun');
+                        icon.classList.add('fa-moon');
+                    }
+                }
+            });
+        }
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        let isMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        function toggleMobileMenu() {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                mobileMenu.classList.add('active');
+                mobileMenuBtn.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Animate menu items
+                const menuItems = mobileMenu.querySelectorAll('.mobile-nav-item, .mobile-menu-actions');
+                menuItems.forEach((item, index) => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateX(30px)';
+                    setTimeout(() => {
+                        item.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateX(0)';
+                    }, 50 * index);
+                });
+            } else {
+                // Reverse animation
+                const menuItems = mobileMenu.querySelectorAll('.mobile-nav-item, .mobile-menu-actions');
+                menuItems.forEach((item, index) => {
+                    item.style.transition = 'all 0.3s ease';
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateX(-30px)';
+                });
+                
+                setTimeout(() => {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuBtn.classList.remove('active');
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+        }
+
+        // Close mobile menu when clicking on a link
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                toggleMobileMenu();
+            }
+        });
+
+        // Language management
+        let currentLang = 'fr';
+        const langBtns = document.querySelectorAll('.lang-btn');
+        
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                langBtns.forEach(b => b.classList.remove('active'));
+                document.querySelectorAll(`.lang-btn[data-lang="${btn.getAttribute('data-lang')}"]`).forEach(b => b.classList.add('active'));
+                currentLang = btn.getAttribute('data-lang');
+                updateLanguage(currentLang);
+            });
+        });
+
+        function updateLanguage(lang) {
+            // Update all elements with data-fr and data-tr attributes
+            document.querySelectorAll('[data-fr][data-tr]').forEach(element => {
+                const frText = element.getAttribute('data-fr');
+                const trText = element.getAttribute('data-tr');
+                element.textContent = lang === 'fr' ? frText : trText;
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-placeholder-fr][data-placeholder-tr]').forEach(element => {
+                const frPlaceholder = element.getAttribute('data-placeholder-fr');
+                const trPlaceholder = element.getAttribute('data-placeholder-tr');
+                element.placeholder = lang === 'fr' ? frPlaceholder : trPlaceholder;
+            });
+
+            // Update page title
+            document.title = lang === 'fr' 
+                ? "Yörem Pâtisserie - Saveurs d'Orient & Savoir-Faire Artisanal" 
+                : "Yörem Pâtisserie - Doğu Lezzetleri & Zanaatkâr Ustalığı";
+        }
+
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Navbar scroll effect and scroll progress
+        const navbar = document.getElementById('navbar');
+        const scrollProgress = document.getElementById('scrollProgress');
+        const backToTopBtn = document.getElementById('backToTop');
+
+        function updateScrollProgress() {
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / scrollHeight) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        }
+
+        function handleScroll() {
+            // Navbar effect
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Update scroll progress
+            updateScrollProgress();
+
+            // Show/hide back to top button
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        // Back to top button
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = navbar.offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight - 10;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Menu tabs
+        const menuTabs = document.querySelectorAll('.menu-tab');
+        const menuContents = document.querySelectorAll('.menu-content');
+
+        // Menu tabs animations
+        menuTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const menuType = tab.getAttribute('data-menu');
+                
+                // Update active tab with animation
+                menuTabs.forEach(t => {
+                    t.classList.remove('active');
+                    t.style.transform = 'scale(1)';
+                });
+                tab.classList.add('active');
+                tab.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    tab.style.transform = 'scale(1)';
+                }, 200);
+                
+                // Update active content with fade animation
+                menuContents.forEach(content => {
+                    if (content.classList.contains('active')) {
+                        content.style.opacity = '0';
+                        setTimeout(() => {
+                            content.classList.remove('active');
+                            content.style.display = 'none';
+                        }, 300);
+                    }
+                });
+                
+                // Show new content with animation
+                setTimeout(() => {
+                    const newContent = document.getElementById(menuType);
+                    if (newContent) {
+                        newContent.style.display = 'block';
+                        newContent.style.opacity = '0';
+                        setTimeout(() => {
+                            newContent.classList.add('active');
+                            newContent.style.opacity = '1';
+                            
+                            // Animate menu items in new content
+                            const items = newContent.querySelectorAll('.menu-item');
+                            items.forEach((item, index) => {
+                                item.style.opacity = '0';
+                                item.style.transform = 'translateY(20px)';
+                                setTimeout(() => {
+                                    item.style.transition = 'all 0.4s ease';
+                                    item.style.opacity = '1';
+                                    item.style.transform = 'translateY(0)';
+                                }, 100 * index);
+                            });
+                        }, 50);
+                    }
+                }, 350);
+            });
+        });
+
+        // Cookie banner - Using in-memory state instead of localStorage
+        let cookiesAccepted = false;
+        
+        setTimeout(() => {
+            if (!cookiesAccepted) {
+                document.getElementById('cookieBanner').style.display = 'block';
+            }
+        }, 2000);
+
+        function acceptCookies() {
+            cookiesAccepted = true;
+            document.getElementById('cookieBanner').style.display = 'none';
+        }
+
+        function declineCookies() {
+            cookiesAccepted = false;
+            document.getElementById('cookieBanner').style.display = 'none';
+        }
+
+        // Newsletter form
+        function handleNewsletter(e) {
+            e.preventDefault();
+            const message = currentLang === 'fr' 
+                ? 'Merci pour votre inscription ! Vous recevrez bientôt nos actualités.'
+                : 'Kaydınız için teşekkürler! Yakında haberlerimizi alacaksınız.';
+            alert(message);
+            e.target.reset();
+        }
+
+        // Lazy Loading Images
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px 0px',
+            threshold: 0.01
+        });
+
+        // Apply lazy loading to images
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+
+        // Intersection Observer for animations
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Add staggered animation for grid items
+                    if (entry.target.parentElement.classList.contains('menu-grid') ||
+                        entry.target.parentElement.classList.contains('gallery-grid') ||
+                        entry.target.parentElement.classList.contains('news-grid')) {
+                        const index = Array.from(entry.target.parentElement.children).indexOf(entry.target);
+                        entry.target.style.transitionDelay = `${index * 0.1}s`;
+                    }
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        // Observe elements for animation
+        document.querySelectorAll('.menu-item, .value-card, .gallery-item, .news-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            animationObserver.observe(el);
+        });
+
+        // Animate page elements on load
+        window.addEventListener('load', () => {
+            // Hero content animation
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent) {
+                heroContent.style.animation = 'fadeInUp 1.2s ease forwards';
+            }
+
+            // Animate navbar elements
+            const navElements = document.querySelectorAll('.nav-link, .nav-actions > *');
+            navElements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(-20px)';
+                el.style.transition = 'all 0.5s ease';
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+
+            // Animate sections as they come into view
+            const sections = document.querySelectorAll('.section');
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        sectionObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+        });
+
+        // Enhanced parallax for multiple elements
+        if (window.innerWidth > 768) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                
+                // Hero parallax
+                const heroVideo = document.querySelector('.hero-video');
+                if (heroVideo && scrolled < window.innerHeight) {
+                    heroVideo.style.transform = `translateX(-50%) translateY(calc(-50% + ${scrolled * 0.5}px)) scale(1.1)`;
+                }
+                
+                // Parallax for about images
+                const aboutImgSecondary = document.querySelector('.about-img-secondary');
+                if (aboutImgSecondary) {
+                    const rect = aboutImgSecondary.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        const speed = 0.2;
+                        const yPos = -(scrolled * speed);
+                        aboutImgSecondary.style.transform = `translateY(${yPos}px)`;
+                    }
+                }
+                
+                // Parallax for section backgrounds
+                document.querySelectorAll('.section-alt').forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        const speed = 0.1;
+                        const yPos = -(scrolled * speed);
+                        section.style.backgroundPosition = `center ${yPos}px`;
+                    }
+                });
+            }, { passive: true });
+        }
+
+        // Counter animation for numbers
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // Animate statistics if present
+        const stats = document.querySelectorAll('[data-counter]');
+        if (stats.length > 0) {
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.getAttribute('data-counter'));
+                        animateCounter(entry.target, target);
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            stats.forEach(stat => statsObserver.observe(stat));
+        }
+
+
+
+        // Touch support improvements
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeDistance = touchStartY - touchEndY;
+            
+            // Pull to refresh hint (not actual refresh)
+            if (swipeDistance < -100 && window.scrollY === 0) {
+                // Could add a visual hint here
+            }
+        }
+
+        // Optimize video loading on mobile
+        const heroVideo = document.querySelector('.hero-video');
+        if (heroVideo && window.innerWidth <= 768) {
+            heroVideo.remove(); // Remove video on mobile for better performance
+        }
+
+        // Performance monitoring
+        if ('performance' in window) {
+            window.addEventListener('load', () => {
+                const perfData = window.performance.timing;
+                const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+                console.log(`Page load time: ${pageLoadTime}ms`);
+            });
+        }
+
+        // Service Worker registration for PWA capabilities (optional)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // Uncomment to enable service worker
+                // navigator.serviceWorker.register('/sw.js');
+            });
+        }
+
+        // Improved focus management
+        document.addEventListener('keydown', (e) => {
+            // Tab key navigation improvements
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-nav');
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-nav');
+        });
+
+        // Debounce function for performance
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Optimize resize events
+        const optimizedResize = debounce(() => {
+            // Handle resize events
+            if (window.innerWidth > 768 && isMenuOpen) {
+                toggleMobileMenu();
+            }
+        }, 250);
+
+        window.addEventListener('resize', optimizedResize);
+
+        // Preload critical images
+        const preloadImages = [
+            'images/galerie/interieur-moderne.jpg',
+            'images/galerie/baklava.jpg'
+        ];
+
+        preloadImages.forEach(src => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = src;
+            document.head.appendChild(link);
+        });
+    </script>
+</body>
+</html>
